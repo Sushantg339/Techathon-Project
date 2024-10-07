@@ -12,35 +12,33 @@
         <div class="navbar-container">
             <a href="#" class="navbar-brand">My Bills App</a>
             <ul class="navbar-menu">
-                <li><a href="bills.html">Bills</a></li>
-                <li><a href="Transactions.html">Transactions</a></li>
-                <li><a href="Budget.html">Budget</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="signup-container">
-        <h1>User Bills</h1>
+        <h1>Budget</h1>
+
+        <form id="incomeForm">
+            <div class="form-group">
+                <label for="monthlyIncome">Monthly Income:</label>
+                <input type="number" id="monthlyIncome" required>
+                <button type="button" id="editIncomeButton" onclick="editIncome()">Edit Income</button>
+            </div>
+        </form>
 
         <form id="billForm">
             <div class="form-group">
-                <label for="income">Monthly income:</label>
-                <input type="number" id="income" required>
+                <label for="billName">Bill Name:</label>
+                <input type="text" id="billName" required>
             </div>
 
             <div class="form-group">
                 <label for="amount">Amount:</label>
                 <input type="number" id="amount" required>
-            </div>
-
-            <div class="form-group">
-                <label for="status">Status:</label>
-                <select id="status" required>
-                    <option value="">Select Status</option>
-                    <option value="Paid">Paid</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Overdue">Overdue</option>
-                </select>
             </div>
 
             <div class="form-group">
@@ -51,12 +49,15 @@
             <button type="submit">Add Bill</button>
         </form>
 
+        <div class="remaining-amount">
+            <h2>Remaining Amount: <span id="remainingAmount">0</span></h2>
+        </div>
+
         <table id="billsTable">
             <thead>
                 <tr>
                     <th>Bill Name</th>
                     <th>Amount</th>
-                    <th>Status</th>
                     <th>Date</th>
                     <th>Action</th>
                 </tr>
@@ -67,57 +68,6 @@
         </table>
     </div>
 
-    <script>
-        const tableBody = document.getElementById('billsTable').querySelector('tbody');
-
-        // Load bills from local storage
-        function loadBills() {
-            const bills = JSON.parse(localStorage.getItem('bills')) || [];
-            tableBody.innerHTML = '';
-            bills.forEach((bill, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${bill.name}</td>
-                    <td>${bill.amount}</td>
-                    <td>${bill.status}</td>
-                    <td>${bill.date}</td>
-                    <td>
-                        <button onclick="deleteBill(${index})">Delete</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Add bill on form submission
-        document.getElementById('billForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const billName = document.getElementById('billName').value;
-            const amount = document.getElementById('amount').value;
-            const status = document.getElementById('status').value;
-            const date = document.getElementById('date').value;
-
-            const newBill = { name: billName, amount: amount, status: status, date: date };
-
-            const bills = JSON.parse(localStorage.getItem('bills')) || [];
-            bills.push(newBill);
-            localStorage.setItem('bills', JSON.stringify(bills));
-
-            loadBills(); // Reload bills
-            document.getElementById('billForm').reset(); // Reset the form
-        });
-
-        // Delete bill function
-        function deleteBill(index) {
-            const bills = JSON.parse(localStorage.getItem('bills')) || [];
-            bills.splice(index, 1); // Remove the bill at the specified index
-            localStorage.setItem('bills', JSON.stringify(bills)); // Update local storage
-            loadBills(); // Reload bills
-        }
-
-        // Initial load of bills
-        loadBills();
-    </script>
+    <script src="budget.js"></script>
 </body>
 </html>

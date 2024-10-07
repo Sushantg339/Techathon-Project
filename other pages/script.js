@@ -1,0 +1,1 @@
+let btn1w = document.querySelector(".btn1w");

@@ -41,8 +41,9 @@ signUpForm.querySelector('form').addEventListener('submit', async function(e) {
                 },
                 body: JSON.stringify(user),
             });
-
-            const data = await response.json(); 
+            console.log(11)
+            const data = await response.text; 
+            console.log(12)
             console.log(response);
             if (response.status === 201) {
                 alert("User Registered Successfully");

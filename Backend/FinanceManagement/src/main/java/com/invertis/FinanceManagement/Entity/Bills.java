@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @RequiredArgsConstructor
@@ -16,6 +18,7 @@ public class Bills {
     private Integer bill_Id;
     private String bill_Name;
     private Integer bill_Amount;
+    private LocalDate date;
     @Enumerated(EnumType.STRING)
     private Status bill_Status;
 }

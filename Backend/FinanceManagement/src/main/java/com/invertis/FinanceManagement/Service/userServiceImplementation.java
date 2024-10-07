@@ -38,24 +38,30 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String updateProfile( String firstName, String lastName, String email, String mobile) {
-
+    public Users getUser(){
         Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
             throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
-        if(firstName!=null){
-            us.setFirst_name(firstName);
+        return us;
+    }
+
+    @Override
+    public String updateProfile(Users user) {
+
+        System.out.println(user);
+        Users us=uRepo.findById(uss.getId()).orElse(null);
+        if(us==null) {
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
+
         }
-        if(lastName!=null){
-            us.setLast_name(lastName);
-        }
-        if(email!=null){
-            us.setEmail(email);
-        }if(mobile!=null){
-            us.setMobileNumber(mobile);
-        }
+            us.setFirst_name(user.getFirst_name());
+            us.setLast_name(user.getLast_name());
+            us.setEmail(user.getEmail());
+            us.setMobileNumber(user.getMobileNumber());
+
+        System.out.println(us);
         uRepo.save(us);
 
         return "Profile Updated Successfully";
@@ -84,6 +90,17 @@ public class userServiceImplementation implements userService {
         }
 
         return us.getTransactions();
+    }
+
+    @Override
+    public List<Bills> getAllBills(){
+        Users us=uRepo.findById(uss.getId()).orElse(null);
+        if(us==null) {
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
+
+        }
+
+        return us.getBills();
     }
 
     @Override
@@ -116,19 +133,26 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String removeBill( int billId) {
+    public String removeBill(String billName, int amount) {
 
         Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
             throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
-        Bills bill=bRepo.findById(billId).get();
-        if(bill==null){
-            throw new BillException("No bills present");
-        }
-        bRepo.delete(bill);
-        return "Bill removed successfully";
+
+
+        Bills bill = us.getBills().stream()
+                    .filter(b -> b.getBill_Name().equals(billName) && b.getBill_Amount() == amount)
+                    .findFirst()
+                    .orElseThrow(() -> new BillException("No bill found with the specified name and amount"));
+
+
+       List<Bills> bills= us.getBills();
+       bills.remove(bill);
+       us.setBills(bills);
+       uRepo.save(us);
+    return "Bill removed successfully";
     }
 
     @Override

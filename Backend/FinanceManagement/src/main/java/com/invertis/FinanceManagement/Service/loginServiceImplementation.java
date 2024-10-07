@@ -36,12 +36,10 @@ public class loginServiceImplementation implements  loginService{
 
         @Override
         public String login(LoginDTO dto) throws UserException {
-            Users user = userRepo.findByMobileNumber(dto.getMobile());
+           Users user=userRepo.findByEmail(dto.getEmail());
+                if(user==null)
+                    throw new UserException("Please Enter a valid email address");
 
-            if(user == null) {
-                user=userRepo.findByEmail(dto.getEmail());
-                throw new UserException("Please Enter a valid mobile number or email");
-            }
 
             UserSession currentUserSession =usersession.findByUserId(user.getId());
 

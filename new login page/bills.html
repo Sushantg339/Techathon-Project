@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bill Tracker</title>
+    <link rel="stylesheet" href="bills.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="Homepage.html">Home Page</a>
+      <a href="transaction2.html">My Transactions</a>
+      <a href="budget.html"> My Budget</a>
+      <button id="logout-btn">Logout</button>
+    </nav>
+    <h1 class="bill-form">User Bills</h1>
+    
+    <div class="bill-form">
+      <label for="bill-name">Bill Name</label>
+      <input type="text" id="bill-name" placeholder="Enter bill name" />
+
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" placeholder="Enter amount" />
+
+      <label for="date">Date</label>
+      <input type="date" id="date" />
+
+      <button id="add-bill-btn">Add Bill</button>
+      <button id="show-bills-btn">Show Bills</button>
+    </div>
+
+    
+    <div id="bill-table" style="display: none">
+      <table>
+        <thead>
+          <tr>
+            <th>Bill Name</th>
+            <th>Amount (₹)</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bill-body">
+          
+        </tbody>
+      </table>
+      <button id="hide-bills-btn">Hide Bills</button>
+    </div>
+
+    <script src="bills.js"></script>
+  </body>
+</html>

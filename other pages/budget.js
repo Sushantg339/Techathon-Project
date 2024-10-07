@@ -75,3 +75,8 @@ function updateRemainingAmount() {
 
 // Initial load of bills
 loadBills();
+
+document.querySelector("#logout-btn").addEventListener("click", ()=>{
+    window.location.href = "index.html";
+    alert("Logged Out Successfullt");
+})

@@ -66,3 +66,8 @@ function updateAmounts(amount, type) {
 
     totalAmount.innerText = (credit - debit).toFixed(2);
 }
+
+document.getElementById("logout-btn").addEventListener("click",function(){
+    window.location.href= "index.html";
+    alert("Logged Out Successfully");
+})

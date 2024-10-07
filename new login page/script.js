@@ -3,23 +3,19 @@ const signInButton = document.getElementById('signInButton');
 const signInForm = document.getElementById('signIn');
 const signUpForm = document.getElementById('signup');
 
-
 signUpButton.addEventListener('click', function() {
     signInForm.style.display = "none";
     signUpForm.style.display = "block";
 });
-
 
 signInButton.addEventListener('click', function() {
     signInForm.style.display = "block";
     signUpForm.style.display = "none";
 });
 
-
-signUpForm.querySelector('form').addEventListener('submit',async function(e) {
+signUpForm.querySelector('form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    
     const firstName = document.getElementById('fName').value;
     const lastName = document.getElementById('lName').value;
     const mail = document.getElementById('email').value;
@@ -37,9 +33,7 @@ signUpForm.querySelector('form').addEventListener('submit',async function(e) {
     console.log(user)
 
     if (firstName && lastName && mail && pass && phone) {
-       
         try {
-            // Send POST request to Spring Boot backend
             const response = await fetch('http://localhost:8088/registerUser', {
                 method: 'POST',
                 headers: {
@@ -47,18 +41,18 @@ signUpForm.querySelector('form').addEventListener('submit',async function(e) {
                 },
                 body: JSON.stringify(user),
             });
-    
-            const data = await response.text();
-            console.log(response)
+
+            const data = await response.json(); 
+            console.log(response);
             if (response.status === 201) {
-                alert("User Registered Successfully")
+                alert("User Registered Successfully");
                 signUpForm.style.display = "none";
                 signInForm.style.display = "block";
             } else {
-                alert(data.message)
+                alert(data.message || 'Registration failed.');
             }
         } catch (error) {
-            alert(error)
+            alert(error);
         }
 
     } else {
@@ -66,9 +60,9 @@ signUpForm.querySelector('form').addEventListener('submit',async function(e) {
     }
 });
 
-// Event listener for login form
-signInForm.querySelector('form').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent the default form submission
+
+signInForm.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault(); 
 
     const mail = document.getElementById('LoginEmail').value;
     const pass = document.getElementById('LoginPassword').value;
@@ -77,7 +71,7 @@ signInForm.querySelector('form').addEventListener('submit', async function (e) {
         password: pass
     };
 
-    console.log(loginData)
+    console.log(loginData);
     try {
         const response = await fetch('http://localhost:8088/login', {
             method: 'POST',
@@ -88,9 +82,10 @@ signInForm.querySelector('form').addEventListener('submit', async function (e) {
         });
 
         const result = await response.text();
-        console.log(result)
+        console.log(result);
         if (response.ok) {
-            alert(`Login Successful: ${result}`); // Success message
+            alert("Login Successful");
+            window.location.href = "Homepage.html";
         } else {
             alert(`Error: ${result}`);
         }

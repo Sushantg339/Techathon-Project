@@ -11,7 +11,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    gap: 60px; /* Space between buttons */
+    gap: 60px; 
 }
 
 .btn {
@@ -30,7 +30,7 @@ button {
 }
 
 .btn1w {
-    background-color: #28a745; /* Green */
+    background-color: #28a745; 
 }
 
 .btn1w:hover {
@@ -38,7 +38,7 @@ button {
 }
 
 .btn2w {
-    background-color: #007bff; /* Blue */
+    background-color: #007bff; 
 }
 
 .btn2w:hover {
@@ -46,7 +46,7 @@ button {
 }
 
 .btn3w {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545; 
 }
 
 .btn3w:hover {

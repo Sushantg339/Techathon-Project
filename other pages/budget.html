@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Bills</title>
-    <link rel="stylesheet" href="budget.css">
+    <link rel="stylesheet" href="budget.css" />
 </head>
 <body>
 
     <nav class="navbar">
-            <ul class="navbar-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><button id="logout-btn" type="button">Logout</button></li>
-            </ul>
+        <a href="Homepage.html">Home Page</a>
+        <a href="bills.html">My Bills</a>
+        <a href="budget.html">My Budget</a>
+        <button id="logout-btn">Logout</button>
     </nav>
 
-    <div class="signup-container">
+    <nav class="navbar">
+        <div class="amount">
+            Remaining Amount: ₹<span id="remainingAmount">0.00</span>
+        </div>
+    </nav>
+
+    <div class="transaction-form">
         <h1>Budget</h1>
 
         <form id="incomeForm">
             <div class="form-group">
                 <label for="monthlyIncome">Monthly Income:</label>
-                <input type="number" id="monthlyIncome" required>
+                <input type="number" id="monthlyIncome" required />
                 <button type="button" id="editIncomeButton" onclick="editIncome()">Edit Income</button>
             </div>
         </form>
@@ -31,39 +35,39 @@
         <form id="billForm">
             <div class="form-group">
                 <label for="billName">Bill Name:</label>
-                <input type="text" id="billName" required>
+                <input type="text" id="billName" required />
             </div>
 
             <div class="form-group">
                 <label for="amount">Amount:</label>
-                <input type="number" id="amount" required>
+                <input type="number" id="amount" required />
             </div>
 
             <div class="form-group">
                 <label for="date">Date:</label>
-                <input type="datetime-local" id="date" required>
+                <input type="datetime-local" id="date" required />
             </div>
 
             <button type="submit">Add Bill</button>
+            <button id="view-table-btn">View Bills</button>
         </form>
+    </div>
 
-        <div class="remaining-amount">
-            <h2>Remaining Amount: <span id="remainingAmount">0</span></h2>
-        </div>
-
-        <table id="billsTable">
+    <div id="billsTable" style="display: none">
+        <table>
             <thead>
                 <tr>
                     <th>Bill Name</th>
-                    <th>Amount</th>
+                    <th>Amount (₹)</th>
                     <th>Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Bills will be dynamically added here -->
+                
             </tbody>
         </table>
+        <button id="hide-table-btn">Hide Bills</button>
     </div>
 
     <script src="budget.js"></script>

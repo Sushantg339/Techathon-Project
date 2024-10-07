@@ -1,23 +1,19 @@
-document.getElementById("logout-btn").addEventListener("click", function() {
-    alert("Logged out!");
+document.getElementById("edit-btn").addEventListener("click", function () {
+    document.getElementById("edit-section").style.display = "block";
+  });
+  
+  document.getElementById("save-changes-btn").addEventListener("click", function () {
     
-});
+    document.getElementById("first-name-display").innerText = document.getElementById("first-name").value;
+    document.getElementById("last-name-display").innerText = document.getElementById("last-name").value;
+    document.getElementById("email-display").innerText = document.getElementById("email").value;
+    document.getElementById("phone-display").innerText = document.getElementById("phone").value;
+  
+    
+    document.getElementById("edit-section").style.display = "none";
+  });
 
-document.getElementById("save-changes-btn").addEventListener("click", function() {
-    // Logic for saving changes (e.g., form validation and data submission)
-    const firstName = document.getElementById("first-name").value;
-    const lastName = document.getElementById("last-name").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
-
-    if (firstName && lastName && phone && email) {
-        alert("Changes saved successfully!");
-    } else {
-        alert("Please fill in all fields.");
-    }
-});
-
-document.getElementById("logout-btn").addEventListener("click" , ()=>{
+  document.getElementById("logout-btn").addEventListener("click",()=>{
     window.location.href = "index.html";
     alert("Logged Out Successfully");
-})
+  })

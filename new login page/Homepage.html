@@ -7,36 +7,37 @@
     <link rel="stylesheet" href="home.css" />
   </head>
   <body>
-    
     <nav class="navbar">
-      <a href="bills.html">Bills</a>
-      <a href="transaction2.html">Transactions</a>
-      <a href="budget.html">Budget</a>
-      <button id="logout-btn">Log Out</button>
+      <a href="bills.html">My Bills</a>
+      <a href="transaction2.html">My Transactions</a>
+      <a href="budget.html">My Budget</a>
+      <button id="logout-btn">Logout</button>
     </nav>
 
+   
+    <div class="user-section">
+      <p>First Name: <span id="first-name-display">John</span></p>
+      <p>Last Name: <span id="last-name-display">Doe</span></p>
+      <p>Email: <span id="email-display">john.doe@example.com</span></p>
+      <p>Phone: <span id="phone-display">123-456-7890</span></p>
+      <button id="edit-btn">Edit</button>
+    </div>
+
     
-    <div class="main-body">
-      <h1>Update Your Information</h1>
-      <div class="form-container">
-        <label for="first-name">First Name</label>
-        <input
-          type="text"
-          id="first-name"
-          placeholder="Enter your first name"
-        />
+    <div id="edit-section" class="user-section" style="display: none">
+      <label for="first-name">First Name</label>
+      <input type="text" id="first-name" value="John" />
 
-        <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" placeholder="Enter your last name" />
+      <label for="last-name">Last Name</label>
+      <input type="text" id="last-name" value="Doe" />
 
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" />
+      <label for="email">Email</label>
+      <input type="email" id="email" value="john.doe@example.com" />
 
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email address" />
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" value="123-456-7890" />
 
-        <button id="save-changes-btn">Save Changes</button>
-      </div>
+      <button id="save-changes-btn">Save Changes</button>
     </div>
 
     <script src="homepage.js"></script>

@@ -21,12 +21,12 @@ function loadBills() {
                     </td>
                 `;
         tableBody.appendChild(row);
-        totalAmount += parseFloat(bill.amount); // Accumulate the total amount
+        totalAmount += parseFloat(bill.amount); 
     });
-    updateRemainingAmount(); // Update remaining amount after loading bills
+    updateRemainingAmount();
 }
 
-// Monthly Income input handling
+
 monthlyIncomeInput.addEventListener('change', function () {
     if (!incomeEntered) {
         monthlyIncomeInput.disabled = true;
@@ -36,11 +36,10 @@ monthlyIncomeInput.addEventListener('change', function () {
 
 function editIncome() {
     monthlyIncomeInput.disabled = false;
-    monthlyIncomeInput.value = ''; // Clear the input for new entry
-    incomeEntered = false; // Reset the flag
+    monthlyIncomeInput.value = ''; 
+    incomeEntered = false; 
 }
 
-// Add bill on form submission
 document.getElementById('billForm').addEventListener('submit', function (event) {
     event.preventDefault();
 

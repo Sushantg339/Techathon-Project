@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface userService {
     public String addUser(Users user);
-    public String updateProfile(String firstName,String lastName,String email,String mobile);
+
+    Users getUser();
+
+    public String updateProfile(Users user);
     public String updatePassword( String password);
     public List<Transactions> getAllTransactions();
 

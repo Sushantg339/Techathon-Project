@@ -44,8 +44,8 @@ public class userController {
     }
 
     @PutMapping("/updateUser")
-    public ResponseEntity<String> updateUserHandler(@Valid  @RequestParam(required = false) String fname,@RequestParam(required = false) String lname,@RequestParam(required = false) String email,@RequestParam(required = false) String mobile){
-        String a = uService.updateProfile(fname,lname,email,mobile);
+    public ResponseEntity<String> updateUserHandler(@Valid  @RequestBody Users user){
+        String a = uService.updateProfile(user);
         return new ResponseEntity<String>(a, HttpStatus.OK);
     }
 
@@ -65,6 +65,12 @@ public class userController {
     public ResponseEntity<List<Bills>> getAllBillsHandler()	{
         List<Bills> a=uService.getAllBills();
         return new ResponseEntity<List<Bills>>(a, HttpStatus.OK);
+    }
+
+    @GetMapping("/getUser")
+    public ResponseEntity<Users> getUserHandler()	{
+        Users a=uService.getUser();
+        return new ResponseEntity<>(a, HttpStatus.OK);
     }
 
     @PostMapping("/addTransaction")

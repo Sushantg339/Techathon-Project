@@ -38,24 +38,30 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String updateProfile( String firstName, String lastName, String email, String mobile) {
-
+    public Users getUser(){
         Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
             throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
-        if(firstName!=null){
-            us.setFirst_name(firstName);
+        return us;
+    }
+
+    @Override
+    public String updateProfile(Users user) {
+
+        System.out.println(user);
+        Users us=uRepo.findById(uss.getId()).orElse(null);
+        if(us==null) {
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
+
         }
-        if(lastName!=null){
-            us.setLast_name(lastName);
-        }
-        if(email!=null){
-            us.setEmail(email);
-        }if(mobile!=null){
-            us.setMobileNumber(mobile);
-        }
+            us.setFirst_name(user.getFirst_name());
+            us.setLast_name(user.getLast_name());
+            us.setEmail(user.getEmail());
+            us.setMobileNumber(user.getMobileNumber());
+
+        System.out.println(us);
         uRepo.save(us);
 
         return "Profile Updated Successfully";

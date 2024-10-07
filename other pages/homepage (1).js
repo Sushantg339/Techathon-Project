@@ -1,6 +1,8 @@
 document.getElementById("logout-btn").addEventListener("click", function() {
+    // Logic for logging out (e.g., redirect to login page)
     alert("Logged out!");
-    
+    // Optionally, you can redirect to another page like this:
+    // window.location.href = "login.html";
 });
 
 document.getElementById("save-changes-btn").addEventListener("click", function() {
@@ -16,8 +18,3 @@ document.getElementById("save-changes-btn").addEventListener("click", function()
         alert("Please fill in all fields.");
     }
 });
-
-document.getElementById("logout-btn").addEventListener("click" , ()=>{
-    window.location.href = "index.html";
-    alert("Logged Out Successfully");
-})

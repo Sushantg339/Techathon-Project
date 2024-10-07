@@ -61,6 +61,12 @@ public class userController {
         return new ResponseEntity<List<Transactions>>(a, HttpStatus.OK);
     }
 
+    @GetMapping("/getAllBills")
+    public ResponseEntity<List<Bills>> getAllBillsHandler()	{
+        List<Bills> a=uService.getAllBills();
+        return new ResponseEntity<List<Bills>>(a, HttpStatus.OK);
+    }
+
     @PostMapping("/addTransaction")
     public ResponseEntity<String> addTransHandler(@Valid @RequestBody Transactions transactions)	{
         String a=uService.addTransaction(transactions);
@@ -74,10 +80,10 @@ public class userController {
         return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 
-    @PostMapping("/removeBill")
-    public ResponseEntity<String> removeBillHandler(@Valid @RequestParam int transactions)	{
-        String a=uService.removeBill(transactions);
-        return new ResponseEntity<>(a, HttpStatus.CREATED);
+    @DeleteMapping("/removeBill/{billName}/{amount}")
+    public ResponseEntity<String> removeBillHandler(@Valid @PathVariable String billName,@PathVariable int amount)	{
+        String a=uService.removeBill(billName,amount);
+        return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/addBudget")

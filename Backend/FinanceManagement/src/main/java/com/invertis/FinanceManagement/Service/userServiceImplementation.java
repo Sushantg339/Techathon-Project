@@ -87,6 +87,17 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
+    public List<Bills> getAllBills(){
+        Users us=uRepo.findById(uss.getId()).orElse(null);
+        if(us==null) {
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
+
+        }
+
+        return us.getBills();
+    }
+
+    @Override
     public String addTransaction( Transactions transactions) {
         Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
@@ -116,19 +127,26 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String removeBill( int billId) {
+    public String removeBill(String billName, int amount) {
 
         Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
             throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
-        Bills bill=bRepo.findById(billId).get();
-        if(bill==null){
-            throw new BillException("No bills present");
-        }
-        bRepo.delete(bill);
-        return "Bill removed successfully";
+
+
+        Bills bill = us.getBills().stream()
+                    .filter(b -> b.getBill_Name().equals(billName) && b.getBill_Amount() == amount)
+                    .findFirst()
+                    .orElseThrow(() -> new BillException("No bill found with the specified name and amount"));
+
+
+       List<Bills> bills= us.getBills();
+       bills.remove(bill);
+       us.setBills(bills);
+       uRepo.save(us);
+    return "Bill removed successfully";
     }
 
     @Override

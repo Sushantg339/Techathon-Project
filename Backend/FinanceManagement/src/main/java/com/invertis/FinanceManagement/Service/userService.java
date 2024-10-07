@@ -12,9 +12,12 @@ public interface userService {
     public String updateProfile(String firstName,String lastName,String email,String mobile);
     public String updatePassword( String password);
     public List<Transactions> getAllTransactions();
+
+    List<Bills> getAllBills();
+
     public String addTransaction(Transactions transactions);
     public String addBill( Bills bills);
-    public String removeBill( int billId);
+    public String removeBill( String billName, int amount);
 
     public String addBudget( Budget budget);
 

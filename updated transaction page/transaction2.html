@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction Tracker</title>
+    <link rel="stylesheet" href="transaction2.css" />
+  </head>
+  <body>
+    <!-- Navbar with Debit, Credit, and Total Amounts -->
+    <nav class="navbar">
+      <div class="amount">
+        Debit Amount: ₹<span id="debit-amount">0.00</span>
+      </div>
+      <div class="amount">
+        Credit Amount: ₹<span id="credit-amount">0.00</span>
+      </div>
+      <div class="amount">
+        Total Amount: ₹<span id="total-amount">0.00</span>
+      </div>
+    </nav>
+
+    <!-- Input Fields for Transactions -->
+    <div class="transaction-form">
+      <label for="transaction-name">Transaction Name</label>
+      <input
+        type="text"
+        id="transaction-name"
+        placeholder="Enter transaction name"
+      />
+
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" placeholder="Enter amount" />
+
+      <label for="date">Date</label>
+      <input type="date" id="date" />
+
+      <label for="type">Type</label>
+      <select id="type">
+        <option value="debit">Debit</option>
+        <option value="credit">Credit</option>
+      </select>
+
+      <button id="add-transaction-btn">Add Transaction</button>
+      <button id="view-table-btn">View Transactions</button>
+    </div>
+
+    <!-- Table Section (Initially Hidden) -->
+    <div id="transaction-table" style="display: none">
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction Name</th>
+            <th>Amount (₹)</th>
+            <th>Date</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody id="transaction-body">
+          <!-- Transactions will be added here dynamically -->
+        </tbody>
+      </table>
+      <button id="hide-table-btn">Hide Transactions</button>
+    </div>
+
+    <script src="transaction2.js"></script>
+  </body>
+</html>

@@ -23,11 +23,9 @@ public class userServiceImplementation implements userService {
     @Autowired
     private TransactionRepository  tRepo;
 
-    @Autowired
-    private UserSessionRepository usession;
 
 
-
+    private Users uss;
     @Override
     public String addUser(Users user) {
         Users u=uRepo.findByEmail(user.getEmail());
@@ -35,19 +33,16 @@ public class userServiceImplementation implements userService {
             throw new UserException("User Already Psent");
         }
 
-        uRepo.save(user);
+        uss=uRepo.save(user);
         return "User SingedUp Successfully..";
     }
 
     @Override
-    public String updateProfile(String id, String firstName, String lastName, String email, String mobile) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String updateProfile( String firstName, String lastName, String email, String mobile) {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         if(firstName!=null){
@@ -67,14 +62,11 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String updatePassword(String id, String password) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String updatePassword(String password) {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         us.setPassword(password);
@@ -83,14 +75,11 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public List<Transactions> getAllTransactions(String id) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public List<Transactions> getAllTransactions() {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
 
@@ -98,14 +87,10 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String addTransaction(String id, Transactions transactions) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String addTransaction( Transactions transactions) {
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         List<Transactions> tt = us.getTransactions();
@@ -116,14 +101,11 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String addBill(String id, Bills bills) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String addBill( Bills bills) {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         List<Bills> bill=us.getBills();
@@ -134,14 +116,11 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String removeBill(String id, int billId) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String removeBill( int billId) {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         Bills bill=bRepo.findById(billId).get();
@@ -153,14 +132,11 @@ public class userServiceImplementation implements userService {
     }
 
     @Override
-    public String addBudget(String id, Budget budget) {
-        UserSession uss=usession.findBySessionId(id);
-        if(uss==null) {
-            throw new UserException("Not logged in !! . Please login first.");
-        }
-        Users us=uRepo.findById(uss.getUserId()).orElse(null);
+    public String addBudget( Budget budget) {
+
+        Users us=uRepo.findById(uss.getId()).orElse(null);
         if(us==null) {
-            throw new UserException("No User found with  UserId : "+uss.getUserId() +". Please register first !");
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
 
         }
         List<Budget> list = us.getBudgets();

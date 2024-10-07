@@ -39,50 +39,50 @@ public class userController {
     }
 
     @PostMapping("/logout")
-    public String logoutUserHandler(@Valid @RequestParam String sessionid) throws UserException {
-        return logS.logOut(sessionid);
+    public String logoutUserHandler() throws UserException {
+        return logS.logOut();
     }
 
     @PutMapping("/updateUser")
-    public ResponseEntity<String> updateUserHandler(@Valid @RequestParam String sessionid, @RequestParam(required = false) String fname,@RequestParam(required = false) String lname,@RequestParam(required = false) String email,@RequestParam(required = false) String mobile){
-        String a = uService.updateProfile(fname,lname,email,mobile,sessionid);
+    public ResponseEntity<String> updateUserHandler(@Valid  @RequestParam(required = false) String fname,@RequestParam(required = false) String lname,@RequestParam(required = false) String email,@RequestParam(required = false) String mobile){
+        String a = uService.updateProfile(fname,lname,email,mobile);
         return new ResponseEntity<String>(a, HttpStatus.OK);
     }
 
     @PutMapping("/updatePassword")
-    public ResponseEntity<String> updatePasswordHandler(@Valid @RequestParam String sessionid,@RequestParam(required = false) String password){
-        String a = uService.updatePassword(sessionid,password);
+    public ResponseEntity<String> updatePasswordHandler(@Valid @RequestParam(required = false) String password){
+        String a = uService.updatePassword(password);
         return new ResponseEntity<String>(a, HttpStatus.OK);
     }
 
     @GetMapping("/getAllTransactions")
-    public ResponseEntity<List<Transactions>> getAllTransHandler(@Valid @RequestParam String sessionid)	{
-        List<Transactions> a=uService.getAllTransactions(sessionid);
-        return new ResponseEntity<List<Transactions>>(a, HttpStatus.CREATED);
+    public ResponseEntity<List<Transactions>> getAllTransHandler()	{
+        List<Transactions> a=uService.getAllTransactions();
+        return new ResponseEntity<List<Transactions>>(a, HttpStatus.OK);
     }
 
     @PostMapping("/addTransaction")
-    public ResponseEntity<String> addTransHandler(@Valid @RequestParam String sessionid,@RequestBody Transactions transactions)	{
-        String a=uService.addTransaction(sessionid,transactions);
-        return new ResponseEntity<>(a, HttpStatus.CREATED);
+    public ResponseEntity<String> addTransHandler(@Valid @RequestBody Transactions transactions)	{
+        String a=uService.addTransaction(transactions);
+        return new ResponseEntity<>(a, HttpStatus.OK);
     }
 
 
     @PostMapping("/addBill")
-    public ResponseEntity<String> addBillHandler(@Valid @RequestParam String sessionid,@RequestBody Bills transactions)	{
-        String a=uService.addBill(sessionid,transactions);
+    public ResponseEntity<String> addBillHandler(@Valid@RequestBody Bills transactions)	{
+        String a=uService.addBill(transactions);
         return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 
     @PostMapping("/removeBill")
-    public ResponseEntity<String> removeBillHandler(@Valid @RequestParam String sessionid,@RequestParam int transactions)	{
-        String a=uService.removeBill(sessionid,transactions);
+    public ResponseEntity<String> removeBillHandler(@Valid @RequestParam int transactions)	{
+        String a=uService.removeBill(transactions);
         return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 
     @PostMapping("/addBudget")
-    public ResponseEntity<String> addBudgetHandler(@Valid @RequestParam String sessionid,@RequestBody Budget transactions)	{
-        String a=uService.addBudget(sessionid,transactions);
+    public ResponseEntity<String> addBudgetHandler(@Valid@RequestBody Budget transactions)	{
+        String a=uService.addBudget(transactions);
         return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 

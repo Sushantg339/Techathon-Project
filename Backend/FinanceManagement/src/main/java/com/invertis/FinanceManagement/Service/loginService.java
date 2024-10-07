@@ -4,5 +4,5 @@ import com.invertis.FinanceManagement.DTO.LoginDTO;
 
 public interface loginService {
     public String login(LoginDTO dto);
-    public String logOut(String key);
+    public String logOut();
 }

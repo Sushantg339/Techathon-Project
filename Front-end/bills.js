@@ -32,7 +32,7 @@ document.getElementById('add-bill-btn').addEventListener('click', async function
                 newRow.innerHTML = `
                     <td>${billName}</td>
                     <td>${amount}</td>
-                    <td>${date}</td>
+                    <td>${datee}</td>
                     <td>Pending</td>
                     <td>
                         <input type="checkbox" class="paid-checkbox" name="box[]" /> Paid
@@ -84,7 +84,7 @@ document.getElementById('show-bills-btn').addEventListener('click', async functi
                     <td>${bill.date}</td>
                     <td>${bill.bill_Status}</td>
                     <td>
-                        <input type="checkbox" class="paid-checkbox" name="box[]" ${bill.bill_Status === 'Paid' ? 'checked disabled' : ''} /> Paid
+                        <input type="checkbox" class="paid-checkbox" name="box[]" ${bill.bill_Status === 'PAID' ? 'checked disabled' : ''} /> Paid
                         <button class="delete-btn">Delete</button>
                     </td>
                 `;
@@ -102,13 +102,36 @@ document.getElementById('show-bills-btn').addEventListener('click', async functi
 });
 
 
-document.getElementById('bill-body').addEventListener('change', function(e) {
+document.getElementById('bill-body').addEventListener('change',async function(e) {
+    e.preventDefault()
     if (e.target.classList.contains('paid-checkbox')) {
         const checkbox = e.target;
         const statusCell = checkbox.parentElement.parentElement.cells[3]; 
         if (checkbox.checked) {
             statusCell.innerText = 'Paid'; 
             checkbox.disabled = true; 
+        }
+        const row = e.target.parentElement.parentElement;
+        const billName = row.cells[0].innerText; // Assuming bill name is in the first column
+        const amount = parseFloat(row.cells[1].innerText);
+        console.log(billName,amount)
+        try {
+            const response = await fetch(`http://localhost:8088/updateBill/${encodeURIComponent(billName)}/${amount}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            });
+
+            if (!response.ok) {
+                alert('Failed to update bill status. Please try again.');
+            }else{
+                window.location.href="bills.html"
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while updating the bill status.');
         }
     }
 });
@@ -150,6 +173,8 @@ document.getElementById('hide-bills-btn').addEventListener('click', function() {
 
 document.getElementById('logout-btn').addEventListener('click', function() {
     window.location.href = 'index.html'; 
+    history.replaceState(null, null, window.location.href);
+
     alert("Logged Out Successfully");
 });
 

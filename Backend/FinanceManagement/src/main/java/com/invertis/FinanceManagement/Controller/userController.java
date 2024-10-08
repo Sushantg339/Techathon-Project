@@ -92,6 +92,12 @@ public class userController {
         return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/updateBill/{billName}/{amount}")
+    public ResponseEntity<String> updateBillHandler(@Valid @PathVariable String billName,@PathVariable int amount)	{
+        String a=uService.updateBill(billName,amount);
+        return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/addBudget")
     public ResponseEntity<String> addBudgetHandler(@Valid@RequestBody Budget transactions)	{
         String a=uService.addBudget(transactions);

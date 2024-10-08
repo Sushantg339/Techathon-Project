@@ -1,6 +1,7 @@
 package com.invertis.FinanceManagement.Service;
 
 import com.invertis.FinanceManagement.Entity.*;
+import com.invertis.FinanceManagement.Enums.Status;
 import com.invertis.FinanceManagement.Exceptions.BillException;
 import com.invertis.FinanceManagement.Exceptions.UserException;
 import com.invertis.FinanceManagement.Repository.*;
@@ -167,6 +168,31 @@ public class userServiceImplementation implements userService {
         us.setBudgets(list);
         uRepo.save(us);
         return "Budget added successfully";
+    }
+
+    @Override
+    public String updateBill(String billName, int amount) {
+        Users us=uRepo.findById(uss.getId()).orElse(null);
+        if(us==null) {
+            throw new UserException("No User found with  UserId : "+uss.getId() +". Please register first !");
+
+        }
+
+
+        Bills bill = us.getBills().stream()
+                .filter(b -> b.getBill_Name().equals(billName) && b.getBill_Amount() == amount)
+                .findFirst()
+                .orElseThrow(() -> new BillException("No bill found with the specified name and amount"));
+
+        List<Bills> bills= us.getBills();
+        bills.remove(bill);
+
+
+        bill.setBill_Status(Status.valueOf("PAID"));
+        bills.add(bill);
+        us.setBills(bills);
+        uRepo.save(us);
+        return "Bill updated successfully";
     }
 
 

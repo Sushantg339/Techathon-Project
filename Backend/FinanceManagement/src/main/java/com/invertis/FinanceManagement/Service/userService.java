@@ -4,6 +4,7 @@ import com.invertis.FinanceManagement.Entity.Bills;
 import com.invertis.FinanceManagement.Entity.Budget;
 import com.invertis.FinanceManagement.Entity.Transactions;
 import com.invertis.FinanceManagement.Entity.Users;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -24,4 +25,5 @@ public interface userService {
 
     public String addBudget( Budget budget);
 
+    public String updateBill(String billName, int amount);
 }

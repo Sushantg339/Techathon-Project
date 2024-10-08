@@ -10,16 +10,17 @@ body {
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #ffffff;
     color: #433878;
     padding: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap; 
 }
-
 .navbar a, .navbar button {
     color: #433878;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 10px; 
     font-size: 16px;
     background-color: transparent;
     border: none;
@@ -33,7 +34,8 @@ body {
 }
 
 .expense-form {
-    width: 80%;
+    width: 90%; 
+    max-width: 600px; 
     margin: 20px auto;
     background-color: #ffffff;
     padding: 20px;
@@ -41,7 +43,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 label {
@@ -50,8 +52,11 @@ label {
     color: #757575;
 }
 
-input[type="text"], input[type="number"], input[type="date"] {
-    width: 50%;
+input[type="text"], 
+input[type="number"], 
+input[type="date"] {
+    width: 100%; 
+    max-width: 400px; 
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #757575;
@@ -60,7 +65,8 @@ input[type="text"], input[type="number"], input[type="date"] {
 }
 
 button {
-    width: 150px;
+    width: 100%; 
+    max-width: 150px; 
     padding: 10px 20px;
     background-color: hsl(327, 90%, 28%);
     color: white;
@@ -75,7 +81,7 @@ button:hover {
 }
 
 table {
-    width: 100%;
+    width: 100%; 
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #ffffff;
@@ -112,11 +118,36 @@ tr:hover {
     background-color: #f2f2f2;
 }
 
-
-#logout-btn{
+#logout-btn {
     background-color: #FF6B6B;
 }
 
-#logout-btn:hover{
+#logout-btn:hover {
     background-color: #fa3a3a;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .expense-form {
+        width: 95%; 
+    }
+
+    input[type="text"], 
+    input[type="number"], 
+    input[type="date"] {
+        width: 100%; 
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #logout-btn {
+        width: 100%;
+        margin-top: 10px; 
+    }
 }

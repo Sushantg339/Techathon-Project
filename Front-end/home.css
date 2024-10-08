@@ -1,90 +1,108 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    color: #433878; 
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #c9d6ff;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  color: #433878; 
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #ffffff;
+  color: #433878;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  color: #433878;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #07001f;
+  color: #ffffff;
+}
+
+.navbar button {
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+  background-color: #f94747;
+}
+
+.user-section {
+  width: 90%; 
+  max-width: 600px; 
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #757575;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%; 
+  max-width: 400px; 
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #757575;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%; 
+  max-width: 150px;
+  padding: 10px 20px;
+  background-color: hsl(327, 90%, 28%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+  background-color: #07001f;
+}
+
+@media (max-width: 576px) {
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    color: #433878;
-    padding: 10px;
-    margin-bottom: 20px;
+      flex-direction: column;
   }
-  
-  .navbar a {
-    color: #433878;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .navbar a:hover {
-    background-color: #07001f;
-    color: #ffffff;
-  }
-  
-  .navbar button {
-    background-color: #FF6B6B;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .navbar button:hover {
-    background-color: #f94747;
-    color: white;
-  }
-  
+
   .user-section {
-    width: 80%;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+      width: 95%; 
   }
-  
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #757575;
-  }
-  
+
   input[type="text"],
   input[type="email"] {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #757575;
-    border-radius: 4px;
-    box-sizing: border-box;
+      width: 95%;
   }
-  
-  button {
-    width: 150px;
-    padding: 10px 20px;
-    background-color: hsl(327, 90%, 28%);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #07001f;
-  }
-  
+}

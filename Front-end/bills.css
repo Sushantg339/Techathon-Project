@@ -8,6 +8,7 @@ body {
 
 .navbar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #ffffff; 
     color: #433878; 
@@ -40,7 +41,8 @@ body {
 }
 
 .bill-form {
-    width: 80%; 
+    width: 90%; 
+    max-width: 600px; 
     margin: 0 auto; 
     background-color: #ffffff; 
     padding: 20px;
@@ -60,7 +62,8 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"] {
-    width: 50%; 
+    width: 100%; 
+    max-width: 300px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #757575; 
@@ -102,4 +105,21 @@ th, td {
 th {
     background-color: hsl(327, 90%, 28%); 
     color: white; 
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
